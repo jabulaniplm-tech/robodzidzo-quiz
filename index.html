@@ -208,7 +208,8 @@ function submitSurvey() {
   };
 
   document.getElementById("result").innerHTML = "Submitting survey...";
-
+console.log(data);
+alert(JSON.stringify(data));
   fetch(scriptURL, {
     method: "POST",
     mode: "no-cors",
