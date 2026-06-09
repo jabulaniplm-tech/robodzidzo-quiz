@@ -1,16 +1,267 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Robodzidzo Quiz</title>
+  <title>Robodzidzo Form 4 Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        #000 0px,
+        #000 20px,
+        #fff 20px,
+        #fff 40px
+      );
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 20px auto;
+      background: rgba(255,255,255,0.95);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #000;
+    }
+
+    .rainbow {
+      font-size: 28px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      background: linear-gradient(
+        90deg,
+        red, orange, yellow, green, blue, indigo, violet
+      );
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .rainbow span {
+      display: inline-block;
+      animation: scrollText 10s linear infinite;
+    }
+
+    @keyframes scrollText {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 95%;
+      padding: 10px;
+      margin: 8px 0 15px 0;
+      font-size: 16px;
+    }
+
+    .question {
+      background: #f4f4f4;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-left: 6px solid black;
+      border-radius: 8px;
+    }
+
+    .question:nth-child(even) {
+      background: #ffffff;
+    }
+
+    button {
+      background: black;
+      color: white;
+      padding: 15px 25px;
+      border: none;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #333;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      padding: 15px;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 
 <body>
 
-<h1>Shumba Dzemakomo Robodzidzo</h1>
+<div class="container">
 
-<h2>Welcome to Robotics Learning</h2>
+  <div class="rainbow">
+    <span>🦁 SHUMBA DZEMAKOMO ROBODZIDZO — FORM 4 ROBOTICS PRE-LESSON QUIZ 🦓🤖</span>
+  </div>
 
-<p>This is my first robotics quiz website.</p>
+  <h2>Topic: Introduction to Robotics</h2>
+
+  <label>Student Name:</label>
+  <input type="text" id="studentName" placeholder="Enter your full name">
+
+  <label>Class:</label>
+  <input type="text" id="studentClass" placeholder="Example: Form 4">
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. What is a robot?</p>
+      <input type="radio" name="q1" value="A"> A. A type of animal<br>
+      <input type="radio" name="q1" value="B"> B. A machine that performs tasks automatically<br>
+      <input type="radio" name="q1" value="C"> C. A television<br>
+      <input type="radio" name="q1" value="D"> D. A tree<br>
+    </div>
+
+    <div class="question">
+      <p>2. Which of the following is a robot?</p>
+      <input type="radio" name="q2" value="A"> A. Hammer<br>
+      <input type="radio" name="q2" value="B"> B. Mars Rover<br>
+      <input type="radio" name="q2" value="C"> C. Stone<br>
+      <input type="radio" name="q2" value="D"> D. Chair<br>
+    </div>
+
+    <div class="question">
+      <p>3. What part of a robot detects the environment?</p>
+      <input type="radio" name="q3" value="A"> A. Sensor<br>
+      <input type="radio" name="q3" value="B"> B. Wheel<br>
+      <input type="radio" name="q3" value="C"> C. Screw<br>
+      <input type="radio" name="q3" value="D"> D. Paint<br>
+    </div>
+
+    <div class="question">
+      <p>4. What is the robot's brain called?</p>
+      <input type="radio" name="q4" value="A"> A. Battery<br>
+      <input type="radio" name="q4" value="B"> B. Controller<br>
+      <input type="radio" name="q4" value="C"> C. Tyre<br>
+      <input type="radio" name="q4" value="D"> D. Frame<br>
+    </div>
+
+    <div class="question">
+      <p>5. What does an actuator do?</p>
+      <input type="radio" name="q5" value="A"> A. Produces movement<br>
+      <input type="radio" name="q5" value="B"> B. Stores books<br>
+      <input type="radio" name="q5" value="C"> C. Measures rainfall only<br>
+      <input type="radio" name="q5" value="D"> D. Paints walls<br>
+    </div>
+
+    <div class="question">
+      <p>6. Which component provides energy to a robot?</p>
+      <input type="radio" name="q6" value="A"> A. Battery<br>
+      <input type="radio" name="q6" value="B"> B. Camera<br>
+      <input type="radio" name="q6" value="C"> C. Sensor<br>
+      <input type="radio" name="q6" value="D"> D. Rope<br>
+    </div>
+
+    <div class="question">
+      <p>7. Which subject is strongly connected to robotics?</p>
+      <input type="radio" name="q7" value="A"> A. Physics<br>
+      <input type="radio" name="q7" value="B"> B. Computing<br>
+      <input type="radio" name="q7" value="C"> C. Engineering<br>
+      <input type="radio" name="q7" value="D"> D. All of the above<br>
+    </div>
+
+    <div class="question">
+      <p>8. Which sensor can help a rover avoid obstacles?</p>
+      <input type="radio" name="q8" value="A"> A. Ultrasonic sensor<br>
+      <input type="radio" name="q8" value="B"> B. Spoon<br>
+      <input type="radio" name="q8" value="C"> C. Pencil<br>
+      <input type="radio" name="q8" value="D"> D. Brick<br>
+    </div>
+
+    <div class="question">
+      <p>9. Which robot can be used in space exploration?</p>
+      <input type="radio" name="q9" value="A"> A. Mars Rover<br>
+      <input type="radio" name="q9" value="B"> B. Wheelbarrow<br>
+      <input type="radio" name="q9" value="C"> C. Plate<br>
+      <input type="radio" name="q9" value="D"> D. Broom<br>
+    </div>
+
+    <div class="question">
+      <p>10. What is Artificial Intelligence in robotics?</p>
+      <input type="radio" name="q10" value="A"> A. A robot's ability to learn or make decisions<br>
+      <input type="radio" name="q10" value="B"> B. A battery type<br>
+      <input type="radio" name="q10" value="C"> C. A screwdriver<br>
+      <input type="radio" name="q10" value="D"> D. A metal rod<br>
+    </div>
+
+  </form>
+
+  <button onclick="markQuiz()">Submit Quiz</button>
+
+  <div id="result"></div>
+
+</div>
+
+<script>
+function getAnswer(questionName) {
+  const options = document.getElementsByName(questionName);
+  for (let i = 0; i < options.length; i++) {
+    if (options[i].checked) {
+      return options[i].value;
+    }
+  }
+  return "";
+}
+
+function markQuiz() {
+  const name = document.getElementById("studentName").value.trim();
+  const studentClass = document.getElementById("studentClass").value.trim();
+
+  if (name === "" || studentClass === "") {
+    alert("Please enter your name and class before submitting.");
+    return;
+  }
+
+  let score = 0;
+
+  const answers = {
+    q1: "B",
+    q2: "B",
+    q3: "A",
+    q4: "B",
+    q5: "A",
+    q6: "A",
+    q7: "D",
+    q8: "A",
+    q9: "A",
+    q10: "A"
+  };
+
+  for (let q in answers) {
+    if (getAnswer(q) === answers[q]) {
+      score++;
+    }
+  }
+
+  const percentage = (score / 10) * 100;
+  let comment = "";
+
+  if (percentage >= 80) {
+    comment = "Excellent Robodzidzo start!";
+  } else if (percentage >= 50) {
+    comment = "Good attempt. Keep learning!";
+  } else {
+    comment = "This is why we learn. Let us build from here!";
+  }
+
+  document.getElementById("result").innerHTML =
+    name + " (" + studentClass + "), your score is " + score + "/10 (" +
+    percentage + "%).<br>" + comment;
+}
+</script>
 
 </body>
 </html>
