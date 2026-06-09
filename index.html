@@ -261,6 +261,25 @@ function markQuiz() {
     name + " (" + studentClass + "), your score is " + score + "/10 (" +
     percentage + "%).<br>" + comment;
 }
+
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyTA53LB6KEMPMoQSRd-SPH0RXWwFoQTuN1iD_jmLjJgDnl4gxaVjepdII8KmpN0IYF/exec";
+
+fetch(scriptURL, {
+  method: "POST",
+  mode: "no-cors",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: name,
+    class: studentClass,
+    lesson: "Introduction to Robotics",
+    quiz: "Pre-Lesson",
+    score: score,
+    percentage: percentage,
+    notes: "GitHub quiz submission"
+  })
+});
 </script>
 
 </body>
