@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Robodzidzo Form 4 Quiz</title>
+  <title>Robodzidzo Attitude Survey</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -21,7 +21,7 @@
     }
 
     .rainbow {
-      font-size: 26px;
+      font-size: 25px;
       font-weight: bold;
       white-space: nowrap;
       overflow: hidden;
@@ -33,7 +33,7 @@
 
     .rainbow span {
       display: inline-block;
-      animation: scrollText 10s linear infinite;
+      animation: scrollText 12s linear infinite;
     }
 
     @keyframes scrollText {
@@ -41,7 +41,7 @@
       to { transform: translateX(-100%); }
     }
 
-    input[type="text"] {
+    input[type="text"], textarea {
       width: 95%;
       padding: 10px;
       margin: 8px 0 15px 0;
@@ -58,6 +58,12 @@
 
     .question:nth-child(even) {
       background: #ffffff;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
     }
 
     button {
@@ -87,10 +93,12 @@
 <div class="container">
 
   <div class="rainbow">
-    <span>🦁 SHUMBA DZEMAKOMO ROBODZIDZO — FORM 4 ROBOTICS PRE-LESSON QUIZ 🦓🤖</span>
+    <span>🦁 SHUMBA DZEMAKOMO ROBODZIDZO — STUDENT ATTITUDE SURVEY 🦓🤖📊</span>
   </div>
 
-  <h2>Topic: Introduction to Robotics</h2>
+  <h2>Robotics, Physics and Innovation Attitude Survey</h2>
+
+  <p><b>Scale:</b> 5 = Strongly Agree, 4 = Agree, 3 = Not Sure, 2 = Disagree, 1 = Strongly Disagree</p>
 
   <label><b>Student Name:</b></label>
   <input type="text" id="studentName" placeholder="Enter your full name">
@@ -98,91 +106,24 @@
   <label><b>Class:</b></label>
   <input type="text" id="studentClass" placeholder="Example: Form 4">
 
-  <form id="quizForm">
+  <div id="questions"></div>
 
-    <div class="question">
-      <p>1. What is a robot?</p>
-      <label><input type="radio" name="q1" value="A"> A. A type of animal</label><br>
-      <label><input type="radio" name="q1" value="B"> B. A machine that performs tasks automatically</label><br>
-      <label><input type="radio" name="q1" value="C"> C. A television</label><br>
-      <label><input type="radio" name="q1" value="D"> D. A tree</label>
-    </div>
+  <div class="question">
+    <p>11. What did you enjoy most about today's robotics lesson?</p>
+    <textarea id="enjoyment" rows="3"></textarea>
+  </div>
 
-    <div class="question">
-      <p>2. Which of the following is a robot?</p>
-      <label><input type="radio" name="q2" value="A"> A. Hammer</label><br>
-      <label><input type="radio" name="q2" value="B"> B. Mars Rover</label><br>
-      <label><input type="radio" name="q2" value="C"> C. Stone</label><br>
-      <label><input type="radio" name="q2" value="D"> D. Chair</label>
-    </div>
+  <div class="question">
+    <p>12. What was difficult or confusing?</p>
+    <textarea id="difficulty" rows="3"></textarea>
+  </div>
 
-    <div class="question">
-      <p>3. What part of a robot detects the environment?</p>
-      <label><input type="radio" name="q3" value="A"> A. Sensor</label><br>
-      <label><input type="radio" name="q3" value="B"> B. Wheel</label><br>
-      <label><input type="radio" name="q3" value="C"> C. Screw</label><br>
-      <label><input type="radio" name="q3" value="D"> D. Paint</label>
-    </div>
+  <div class="question">
+    <p>13. What would you like to learn next in robotics?</p>
+    <textarea id="nextLearning" rows="3"></textarea>
+  </div>
 
-    <div class="question">
-      <p>4. What is the robot's brain called?</p>
-      <label><input type="radio" name="q4" value="A"> A. Battery</label><br>
-      <label><input type="radio" name="q4" value="B"> B. Controller</label><br>
-      <label><input type="radio" name="q4" value="C"> C. Tyre</label><br>
-      <label><input type="radio" name="q4" value="D"> D. Frame</label>
-    </div>
-
-    <div class="question">
-      <p>5. What does an actuator do?</p>
-      <label><input type="radio" name="q5" value="A"> A. Produces movement</label><br>
-      <label><input type="radio" name="q5" value="B"> B. Stores books</label><br>
-      <label><input type="radio" name="q5" value="C"> C. Measures rainfall only</label><br>
-      <label><input type="radio" name="q5" value="D"> D. Paints walls</label>
-    </div>
-
-    <div class="question">
-      <p>6. Which component provides energy to a robot?</p>
-      <label><input type="radio" name="q6" value="A"> A. Battery</label><br>
-      <label><input type="radio" name="q6" value="B"> B. Camera</label><br>
-      <label><input type="radio" name="q6" value="C"> C. Sensor</label><br>
-      <label><input type="radio" name="q6" value="D"> D. Rope</label>
-    </div>
-
-    <div class="question">
-      <p>7. Which subject is strongly connected to robotics?</p>
-      <label><input type="radio" name="q7" value="A"> A. Physics</label><br>
-      <label><input type="radio" name="q7" value="B"> B. Computing</label><br>
-      <label><input type="radio" name="q7" value="C"> C. Engineering</label><br>
-      <label><input type="radio" name="q7" value="D"> D. All of the above</label>
-    </div>
-
-    <div class="question">
-      <p>8. Which sensor can help a rover avoid obstacles?</p>
-      <label><input type="radio" name="q8" value="A"> A. Ultrasonic sensor</label><br>
-      <label><input type="radio" name="q8" value="B"> B. Spoon</label><br>
-      <label><input type="radio" name="q8" value="C"> C. Pencil</label><br>
-      <label><input type="radio" name="q8" value="D"> D. Brick</label>
-    </div>
-
-    <div class="question">
-      <p>9. Which robot can be used in space exploration?</p>
-      <label><input type="radio" name="q9" value="A"> A. Mars Rover</label><br>
-      <label><input type="radio" name="q9" value="B"> B. Wheelbarrow</label><br>
-      <label><input type="radio" name="q9" value="C"> C. Plate</label><br>
-      <label><input type="radio" name="q9" value="D"> D. Broom</label>
-    </div>
-
-    <div class="question">
-      <p>10. What is Artificial Intelligence in robotics?</p>
-      <label><input type="radio" name="q10" value="A"> A. A robot's ability to learn or make decisions</label><br>
-      <label><input type="radio" name="q10" value="B"> B. A battery type</label><br>
-      <label><input type="radio" name="q10" value="C"> C. A screwdriver</label><br>
-      <label><input type="radio" name="q10" value="D"> D. A metal rod</label>
-    </div>
-
-  </form>
-
-  <button onclick="markQuiz()">Submit Quiz</button>
+  <button onclick="submitSurvey()">Submit Attitude Survey</button>
 
   <div id="result"></div>
 
@@ -191,81 +132,96 @@
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbyTA53LB6KEMPMoQSRd-SPH0RXWwFoQTuN1iD_jmLjJgDnl4gxaVjepdII8KmpN0IYF/exec";
 
-function getAnswer(questionName) {
-  const options = document.getElementsByName(questionName);
-  for (let i = 0; i < options.length; i++) {
-    if (options[i].checked) {
-      return options[i].value;
-    }
-  }
-  return "";
+const surveyQuestions = [
+  ["roboticsInterest", "I enjoy learning about robots."],
+  ["physicsInterest", "Robotics makes Physics more interesting."],
+  ["robotBuildingConfidence", "I believe I can build a simple robot."],
+  ["programmingConfidence", "I believe I can learn programming."],
+  ["problemSolving", "Robotics helps me become better at solving problems."],
+  ["teamwork", "I enjoy working with others on robotics projects."],
+  ["communityRelevance", "Robotics can help solve problems in Zimbabwe."],
+  ["futureCareer", "I would consider a career involving robotics, engineering, science or technology."],
+  ["innovationMindset", "I enjoy creating new things."],
+  ["persistence", "I am willing to keep trying even when a robotics project fails."]
+];
+
+function createQuestions() {
+  let html = "";
+
+  surveyQuestions.forEach((q, index) => {
+    html += `
+      <div class="question">
+        <p>${index + 1}. ${q[1]}</p>
+        <select id="${q[0]}">
+          <option value="">Choose one</option>
+          <option value="5">5 - Strongly Agree</option>
+          <option value="4">4 - Agree</option>
+          <option value="3">3 - Not Sure</option>
+          <option value="2">2 - Disagree</option>
+          <option value="1">1 - Strongly Disagree</option>
+        </select>
+      </div>
+    `;
+  });
+
+  document.getElementById("questions").innerHTML = html;
 }
 
-function markQuiz() {
+function submitSurvey() {
   const name = document.getElementById("studentName").value.trim();
   const studentClass = document.getElementById("studentClass").value.trim();
 
   if (name === "" || studentClass === "") {
-    alert("Please enter your name and class before submitting.");
+    alert("Please enter your name and class.");
     return;
   }
 
-  const answers = {
-    q1: "B",
-    q2: "B",
-    q3: "A",
-    q4: "B",
-    q5: "A",
-    q6: "A",
-    q7: "D",
-    q8: "A",
-    q9: "A",
-    q10: "A"
+  let totalScore = 0;
+
+  for (let q of surveyQuestions) {
+    let value = document.getElementById(q[0]).value;
+
+    if (value === "") {
+      alert("Please answer all attitude questions.");
+      return;
+    }
+
+    totalScore += Number(value);
+  }
+
+  const data = {
+    formType: "attitude",
+    name: name,
+    class: studentClass,
+    roboticsInterest: document.getElementById("roboticsInterest").value,
+    physicsInterest: document.getElementById("physicsInterest").value,
+    robotBuildingConfidence: document.getElementById("robotBuildingConfidence").value,
+    programmingConfidence: document.getElementById("programmingConfidence").value,
+    problemSolving: document.getElementById("problemSolving").value,
+    teamwork: document.getElementById("teamwork").value,
+    communityRelevance: document.getElementById("communityRelevance").value,
+    futureCareer: document.getElementById("futureCareer").value,
+    enjoyment: document.getElementById("enjoyment").value,
+    difficulty: document.getElementById("difficulty").value,
+    nextLearning: document.getElementById("nextLearning").value,
+    totalScore: totalScore
   };
 
-  let score = 0;
-
-  for (let q in answers) {
-    if (getAnswer(q) === answers[q]) {
-      score++;
-    }
-  }
-
-  const percentage = (score / 10) * 100;
-
-  let comment = "";
-  if (percentage >= 80) {
-    comment = "Excellent Robodzidzo start!";
-  } else if (percentage >= 50) {
-    comment = "Good attempt. Keep learning!";
-  } else {
-    comment = "This is why we learn. Let us build from here!";
-  }
-
-  document.getElementById("result").innerHTML =
-    name + " (" + studentClass + "), your score is " + score + "/10 (" +
-    percentage + "%).<br>" + comment + "<br><br>Saving result...";
+  document.getElementById("result").innerHTML = "Submitting survey...";
 
   fetch(scriptURL, {
     method: "POST",
     mode: "no-cors",
-    body: JSON.stringify({
-      name: name,
-      class: studentClass,
-      lesson: "Introduction to Robotics",
-      quiz: "Pre-Lesson",
-      score: score,
-      percentage: percentage,
-      notes: "GitHub quiz submission"
-    })
+    body: JSON.stringify(data)
   });
 
   setTimeout(function() {
     document.getElementById("result").innerHTML =
-      name + " (" + studentClass + "), your score is " + score + "/10 (" +
-      percentage + "%).<br>" + comment + "<br><br>Result submitted.";
+      "Thank you, " + name + ". Your attitude survey has been submitted.<br>Total attitude score: " + totalScore + "/50";
   }, 1500);
 }
+
+createQuestions();
 </script>
 
 </body>
