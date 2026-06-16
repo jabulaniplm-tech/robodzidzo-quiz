@@ -1,229 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Robodzidzo Attitude Survey</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: repeating-linear-gradient(45deg, #000 0px, #000 20px, #fff 20px, #fff 40px);
-    }
-
-    .container {
-      max-width: 850px;
-      margin: 20px auto;
-      background: rgba(255,255,255,0.96);
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px #000;
-    }
-
-    .rainbow {
-      font-size: 25px;
-      font-weight: bold;
-      white-space: nowrap;
-      overflow: hidden;
-      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-    }
-
-    .rainbow span {
-      display: inline-block;
-      animation: scrollText 12s linear infinite;
-    }
-
-    @keyframes scrollText {
-      from { transform: translateX(100%); }
-      to { transform: translateX(-100%); }
-    }
-
-    input[type="text"], textarea {
-      width: 95%;
-      padding: 10px;
-      margin: 8px 0 15px 0;
-      font-size: 16px;
-    }
-
-    .question {
-      background: #f4f4f4;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-left: 6px solid black;
-      border-radius: 8px;
-    }
-
-    .question:nth-child(even) {
-      background: #ffffff;
-    }
-
-    select {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-    }
-
-    button {
-      background: black;
-      color: white;
-      padding: 15px;
-      border: none;
-      font-size: 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    #result {
-      margin-top: 20px;
-      font-size: 22px;
-      font-weight: bold;
-      text-align: center;
-      padding: 15px;
-      border-radius: 10px;
-    }
-  </style>
+  <title>Robotics Clinic Portal</title>
 </head>
-
 <body>
+  <h2>Robotics Clinic Feedback</h2>
+  <form id="clinicForm">
+    <label>Username:</label><br>
+    <input type="text" name="username" required><br><br>
 
-<div class="container">
+    <label>Likes:</label><br>
+    <input type="text" name="likes"><br><br>
 
-  <div class="rainbow">
-    <span>🦁 SHUMBA DZEMAKOMO ROBODZIDZO — STUDENT ATTITUDE SURVEY 🦓🤖📊</span>
-  </div>
+    <label>Membership:</label><br>
+    <select name="membership">
+      <option value="Basic">Basic</option>
+      <option value="Premium">Premium</option>
+      <option value="Guest">Guest</option>
+    </select><br><br>
 
-  <h2>Robotics, Physics and Innovation Attitude Survey</h2>
+    <label>Comments:</label><br>
+    <textarea name="comments"></textarea><br><br>
 
-  <p><b>Scale:</b> 5 = Strongly Agree, 4 = Agree, 3 = Not Sure, 2 = Disagree, 1 = Strongly Disagree</p>
+    <button type="submit">Submit</button>
+  </form>
 
-  <label><b>Student Name:</b></label>
-  <input type="text" id="studentName" placeholder="Enter your full name">
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyM52qGu8sSFJw-8wTw2hZTFT9Wi2qMLODsG2MwjW3Bp4fc3GgCH_DUiNNKEbV4WvbazQ/exec";
 
-  <label><b>Class:</b></label>
-  <input type="text" id="studentClass" placeholder="Example: Form 4">
+    document.getElementById("clinicForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
 
-  <div id="questions"></div>
-
-  <div class="question">
-    <p>11. What did you enjoy most about today's robotics lesson?</p>
-    <textarea id="enjoyment" rows="3"></textarea>
-  </div>
-
-  <div class="question">
-    <p>12. What was difficult or confusing?</p>
-    <textarea id="difficulty" rows="3"></textarea>
-  </div>
-
-  <div class="question">
-    <p>13. What would you like to learn next in robotics?</p>
-    <textarea id="nextLearning" rows="3"></textarea>
-  </div>
-
-  <button onclick="submitSurvey()">Submit Attitude Survey</button>
-
-  <div id="result"></div>
-
-</div>
-
-<script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbzBTexzCvSrP_P7idVvRtis5Fc9IT3U6gtXFACuXjKNy5t03oe6N4JCPlYUnY7Eljh1/exec";
-
-const surveyQuestions = [
-  ["roboticsInterest", "I enjoy learning about robots."],
-  ["physicsInterest", "Robotics makes Physics more interesting."],
-  ["robotBuildingConfidence", "I believe I can build a simple robot."],
-  ["programmingConfidence", "I believe I can learn programming."],
-  ["problemSolving", "Robotics helps me become better at solving problems."],
-  ["teamwork", "I enjoy working with others on robotics projects."],
-  ["communityRelevance", "Robotics can help solve problems in Zimbabwe."],
-  ["futureCareer", "I would consider a career involving robotics, engineering, science or technology."],
-  ["innovationMindset", "I enjoy creating new things."],
-  ["persistence", "I am willing to keep trying even when a robotics project fails."]
-];
-
-function createQuestions() {
-  let html = "";
-
-  surveyQuestions.forEach((q, index) => {
-    html += `
-      <div class="question">
-        <p>${index + 1}. ${q[1]}</p>
-        <select id="${q[0]}">
-          <option value="">Choose one</option>
-          <option value="5">5 - Strongly Agree</option>
-          <option value="4">4 - Agree</option>
-          <option value="3">3 - Not Sure</option>
-          <option value="2">2 - Disagree</option>
-          <option value="1">1 - Strongly Disagree</option>
-        </select>
-      </div>
-    `;
-  });
-
-  document.getElementById("questions").innerHTML = html;
-}
-
-function submitSurvey() {
-  const name = document.getElementById("studentName").value.trim();
-  const studentClass = document.getElementById("studentClass").value.trim();
-
-  if (name === "" || studentClass === "") {
-    alert("Please enter your name and class.");
-    return;
-  }
-
-  let totalScore = 0;
-
-  for (let q of surveyQuestions) {
-    let value = document.getElementById(q[0]).value;
-
-    if (value === "") {
-      alert("Please answer all attitude questions.");
-      return;
-    }
-
-    totalScore += Number(value);
-  }
-
-  const data = {
-    formType: "attitude",
-    name: name,
-    class: studentClass,
-    roboticsInterest: document.getElementById("roboticsInterest").value,
-    physicsInterest: document.getElementById("physicsInterest").value,
-    robotBuildingConfidence: document.getElementById("robotBuildingConfidence").value,
-    programmingConfidence: document.getElementById("programmingConfidence").value,
-    problemSolving: document.getElementById("problemSolving").value,
-    teamwork: document.getElementById("teamwork").value,
-    communityRelevance: document.getElementById("communityRelevance").value,
-    futureCareer: document.getElementById("futureCareer").value,
-    enjoyment: document.getElementById("enjoyment").value,
-    difficulty: document.getElementById("difficulty").value,
-    nextLearning: document.getElementById("nextLearning").value,
-    totalScore: totalScore
-  };
-
-  document.getElementById("result").innerHTML = "Submitting survey...";
-console.log(data);
-alert(JSON.stringify(data));
-  fetch(scriptURL, {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(data)
-  });
-
-  setTimeout(function() {
-    document.getElementById("result").innerHTML =
-      "Thank you, " + name + ". Your attitude survey has been submitted.<br>Total attitude score: " + totalScore + "/50";
-  }, 1500);
-}
-
-createQuestions();
-</script>
-
+      fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data)
+      })
+      .then(res => alert("Submitted successfully!"))
+      .catch(err => alert("Error: " + err));
+    });
+  </script>
 </body>
 </html>
